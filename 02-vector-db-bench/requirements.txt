@@ -1,0 +1,7 @@
+numpy
+pandas
+tqdm
+scikit-learn
+faiss-cpu
+sentence-transformers
+typer
