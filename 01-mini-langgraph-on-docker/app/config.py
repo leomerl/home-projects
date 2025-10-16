@@ -1,6 +1,6 @@
 import os
 
-OLLAMA_URL = os.getenv("OLLAMA_URL", "http://ollama:11434/api/generate")
+MODEL_ENDPOINT = os.getenv("MODEL_ENDPOINT", "http://ollama:11434/api/generate")
 
 REDIS_HOST = os.getenv("REDIS_HOST", "redis-vector")
 REDIS_PORT = int(os.getenv("REDIS_PORT", "6379"))

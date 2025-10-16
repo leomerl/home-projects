@@ -19,8 +19,7 @@ services:
     environment:
       - REDIS_HOST=redis-vector
       - REDIS_PORT=6379
-      - OLLAMA_URL=http://ollama:11434
-      - OLLAMA_MODEL=mistral
+      - MODEL_ENDPOINT=http://ollama:11434
     depends_on:
       - redis-vector
       - ollama

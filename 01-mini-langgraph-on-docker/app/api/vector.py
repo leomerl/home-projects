@@ -1,11 +1,9 @@
 import time
-import requests
 from fastapi import APIRouter, Body, Query, Response
 from prometheus_client import generate_latest, CONTENT_TYPE_LATEST
-from app.config import OLLAMA_URL
 from app.metrics import prompt_count, req_latency, vec_upserts_total, vec_queries_total, vec_query_latency
 from app.services.vector_index import ensure_index, upsert_doc, knn_search
-from app.services.ollama_client import generate
+from app.services.model_client import generate
 
 router = APIRouter(prefix="/vector", tags=["vector"])
 
@@ -33,17 +31,12 @@ def search(q: str, k: int = 5):
     res["latency_seconds"] = elapsed
     return res
 
-@router.get("/ollama")
-def ask_ollama(q: str):
-    answer = generate(q)
-    return {"answer": answer}
-
 @router.get("/ask")
 @req_latency.time()
 def ask(q: str):
     prompt_count.inc()
-    response = requests.post(OLLAMA_URL, json={"model": "mistral", "prompt": q, "stream": False})
-    return {"answer": response.json()["response"]}
+    response = generate(q)
+    return {"answer": response}
 
 @router.get("/metrics")
 def metrics():
