@@ -1,7 +1,6 @@
 import random
 
 def load_dataset(n_docs: int = 1000):
-    """Generate simple synthetic text dataset."""
     topics = ["sports", "politics", "tech", "science", "finance"]
     texts, ids = [], []
     for i in range(n_docs):

@@ -12,4 +12,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY bench/ ./bench
 
-ENTRYPOINT ["python", "-m", "bench.run_bench"]
+ENTRYPOINT ["python", "-m", "bench.run_bench", "bench"]

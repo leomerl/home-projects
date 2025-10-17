@@ -5,7 +5,6 @@ from sentence_transformers import SentenceTransformer
 _model = None
 
 def embed_texts(texts: list[str], model_name: str = "all-MiniLM-L6-v2") -> np.ndarray:
-    """Return np.ndarray of embeddings."""
     global _model
     if _model is None:
         _model = SentenceTransformer(model_name)
